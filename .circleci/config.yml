@@ -136,7 +136,6 @@ workflows:
           executor:
             name: android/android-machine
             resource-class: xlarge
-            tag: 2022.09.1
           max-tries: 1
           no-output-timeout: 30m
           additional-emulator-args: "-partition-size 1024"
