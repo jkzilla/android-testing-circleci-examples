@@ -41,7 +41,6 @@ jobs:
       - android/start-emulator-and-run-tests:
           test-command: ./gradlew connectedDebugAndroidTest
           system-image: << parameters.system-image >>
-          partition-size: 4096
       - run:
           name: Save test results
           command: |
@@ -134,9 +133,13 @@ workflows:
     jobs:
       - unit-test
       - android/run-ui-tests:
-          filters:
-            branches:
-              ignore: main # regular commits
+          executor:
+            name: android/android-machine
+            resource-class: xlarge
+            tag: 2022.09.1
+          max-tries: 1
+          no-output-timeout: 30m
+          additional-emulator-args: "-partition-size 1024"
       - android-test:
           matrix:
             alias: android-test-all
