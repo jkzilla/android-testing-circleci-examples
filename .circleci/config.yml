@@ -41,6 +41,7 @@ jobs:
       - android/start-emulator-and-run-tests:
           test-command: ./gradlew connectedDebugAndroidTest
           system-image: << parameters.system-image >>
+          partition-size: 4096
       - run:
           name: Save test results
           command: |
@@ -165,3 +166,5 @@ workflows:
             branches:
               only: main # Commits to main branch
 
+
+# VS Code Extension Version: 1.0.0
